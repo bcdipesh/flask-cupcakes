@@ -1,6 +1,6 @@
 """Flask app for Cupcakes"""
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from models import db, connect_db, Cupcake
 from dotenv import load_dotenv
 import os
@@ -83,3 +83,13 @@ def delete_cupcake(cupcake_id):
     db.session.commit()
 
     return jsonify(message="Deleted")
+
+
+# Front end route
+
+
+@app.route("/")
+def render_home():
+    """Display home page"""
+
+    return render_template("cupcakes.html")
